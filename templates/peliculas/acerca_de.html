@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Acerca de · CineMood{% endblock %}
+{% block content %}
+<section>
+  <p>EL PROYECTO</p>
+  <h1>Elegir sin agotarse</h1>
+  <p>CineMood resuelve un problema cotidiano: pasamos demasiado tiempo buscando una película y terminamos sin ver nada. Aquí la búsqueda comienza con una pregunta sencilla: ¿cómo te sientes?</p>
+  <h2>¿Cómo funciona?</h2>
+  <p>Django guarda el catálogo local y los perfiles. Una vista envía tu ánimo a un microservicio en Node.js, que consulta recomendaciones en Neon PostgreSQL. Si ese servicio no está disponible, CineMood avisa y no inventa un resultado local.</p>
+</section>
+{% endblock %}

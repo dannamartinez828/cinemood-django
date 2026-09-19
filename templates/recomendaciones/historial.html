@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Historial · CineMood{% endblock %}
+{% block content %}
+<section>
+  <p>MODELO PERFILCINÉFILO</p>
+  <h1>Últimas búsquedas</h1>
+  <div>
+    {% for perfil in perfiles %}
+      <p><b>{{ perfil.nombre }}</b> - {{ perfil.animo_favorito|capfirst }} - {{ perfil.fecha_creacion|date:"d/m/Y H:i" }}</p>
+    {% empty %}<p>No hay búsquedas todavía.</p>{% endfor %}
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}CineMood · Películas para tu ánimo{% endblock %}
+{% block content %}
+<section>
+  <p>TU ÁNIMO, TU PELÍCULA</p>
+  <h1>¿Qué historia combina<br>con tu día?</h1>
+  <p>No pierdas media hora eligiendo. Dinos cómo te sientes y encuentra una película para este momento.</p>
+  <a href="{% url 'recomendaciones:elegir' %}">Descubrir mi película</a>
+</section>
+<section>
+  <div>
+    <div><p>CARTELERA EMOCIONAL</p><h2>Algunas historias para empezar</h2></div>
+    <a href="{% url 'peliculas:catalogo' %}">Ver las {{ total_peliculas }} películas</a>
+  </div>
+  <div>
+    {% for pelicula in peliculas %}
+      <div>
+        <p>{{ pelicula.emoji }} - {{ pelicula.get_animo_display }}</p>
+        <h3>{{ pelicula.titulo }}</h3>
+        <p>{{ pelicula.genero }} · {{ pelicula.anio }}</p>
+        <a href="{% url 'peliculas:detalle' pelicula.id %}">Ver detalle</a>
+      </div>
+    {% empty %}
+      <p>Aún no hay películas. Ejecuta <code>python manage.py cargar_datos</code>.</p>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

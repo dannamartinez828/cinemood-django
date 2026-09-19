@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}{{ pelicula.titulo }} · CineMood{% endblock %}
+{% block content %}
+<section>
+  <p>{{ pelicula.emoji }}</p>
+  <div>
+    <p>Estado de ánimo: {{ pelicula.get_animo_display }}</p>
+    <h1>{{ pelicula.titulo }}</h1>
+    <p>{{ pelicula.genero }} · {{ pelicula.anio }} · {{ pelicula.duracion }} minutos</p>
+    <p>{{ pelicula.sinopsis }}</p>
+    <a href="{% url 'recomendaciones:resultado' pelicula.animo %}">Ver recomendaciones para {{ pelicula.get_animo_display|lower }}</a>
+  </div>
+</section>
+{% endblock %}

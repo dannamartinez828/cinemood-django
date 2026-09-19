@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Catálogo · CineMood{% endblock %}
+{% block content %}
+<section>
+  <p>EXPLORA</p>
+  <h1>Catálogo de películas</h1>
+  <div>
+    <a href="{% url 'peliculas:catalogo' %}">Todas</a>
+    {% for valor, nombre in animos %}
+      | <a href="?animo={{ valor }}">{{ nombre }}</a>
+    {% endfor %}
+  </div>
+</section>
+<section>
+  {% for pelicula in peliculas %}
+    <div>
+      <p>{{ pelicula.emoji }} - {{ pelicula.get_animo_display }}</p>
+      <h3>{{ pelicula.titulo }}</h3>
+      <p>{{ pelicula.genero }} · {{ pelicula.duracion }} min</p>
+      <a href="{% url 'peliculas:detalle' pelicula.id %}">Ver detalle</a>
+    </div>
+    <hr>
+  {% empty %}<p>No hay películas para este ánimo.</p>{% endfor %}
+</section>
+{% endblock %}

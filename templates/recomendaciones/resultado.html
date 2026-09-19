@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Tu recomendación · CineMood{% endblock %}
+{% block content %}
+<section>
+  <p>RESULTADO PARA {{ animo|upper }}</p>
+  <h1>{{ nombre }}, estas historias son para ti</h1>
+  <p>Recomendaciones consultadas al microservicio y su base de datos Neon.</p>
+</section>
+<section>
+  {% if error %}
+    <div><b>Pausa técnica</b><p>{{ error }}</p><small>Servicio configurado: {{ microservicio_url }}</small></div>
+  {% else %}
+    <div>
+      {% for pelicula in recomendaciones %}
+        <article>
+          <p>{{ pelicula.emoji|default:"🍿" }} - {{ pelicula.compatibilidad }}% compatible</p>
+          <h3>{{ pelicula.titulo }}</h3>
+          <p>{{ pelicula.genero }} · {{ pelicula.anio }}</p>
+          <p>{{ pelicula.razon }}</p>
+          <hr>
+        </article>
+      {% empty %}<p>El servicio respondió, pero no encontró recomendaciones.</p>{% endfor %}
+    </div>
+    <p>El modelo local también encontró {{ peliculas_locales|length }} película{{ peliculas_locales|length|pluralize }} con este ánimo.</p>
+  {% endif %}
+  <a href="{% url 'recomendaciones:elegir' %}">Probar otro ánimo</a>
+</section>
+{% endblock %}

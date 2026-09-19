@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}CineMood{% endblock %}</title>
+</head>
+<body>
+  <h1><a href="{% url 'peliculas:inicio' %}">CineMood</a></h1>
+  <p>
+    <a href="{% url 'peliculas:inicio' %}">Inicio</a> |
+    <a href="{% url 'peliculas:catalogo' %}">Películas</a> |
+    <a href="{% url 'recomendaciones:elegir' %}">Recomiéndame</a> |
+    <a href="{% url 'recomendaciones:historial' %}">Historial</a> |
+    <a href="{% url 'peliculas:acerca_de' %}">Acerca de</a>
+  </p>
+  <hr>
+  {% block content %}{% endblock %}
+  <hr>
+  <p>Proyecto académico CineMood</p>
+</body>
+</html>

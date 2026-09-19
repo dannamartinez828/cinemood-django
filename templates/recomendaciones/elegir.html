@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}¿Cómo te sientes? · CineMood{% endblock %}
+{% block content %}
+<section>
+  <p>PRIMER PASO</p>
+  <h1>Cuéntanos cómo está tu día</h1>
+  <p>Una emoción basta para encontrar tu próxima historia.</p>
+  <form method="post">
+    {% csrf_token %}
+    <label for="nombre">Tu nombre</label>
+    <input id="nombre" name="nombre" maxlength="80" placeholder="Ej. Valentina" required>
+    <fieldset>
+      <legend>¿Cómo te sientes?</legend>
+      <div>
+        {% for valor, nombre in animos %}
+          <label>
+            <input type="radio" name="animo" value="{{ valor }}" required>
+            {{ nombre }}
+          </label>
+          <br>
+        {% endfor %}
+      </div>
+    </fieldset>
+    <button type="submit">Encontrar mi película</button>
+  </form>
+</section>
+{% endblock %}
